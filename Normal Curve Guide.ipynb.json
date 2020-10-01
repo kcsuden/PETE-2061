@@ -1,0 +1,227 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#BASIC NORMAL CURVE PLOT"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 1: call libraries here\n",
+    "import numpy as np         #These lines will import the numpy functions and the math plot libraries for use in the code\n",
+    "import matplotlib.pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 2: define normal curve function and set in a variable\n",
+    "def f(x):\n",
+    "    f = np.exp(-x**2/2) / np.sqrt(2*np.pi)           #This is the mathmatical function for a normal curve. This will\n",
+    "    return f                                         #almost never change\n",
+    "                                                     "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 3: Set x and y axis info into variables\n",
+    "x = np.arange(x axis start value,x axis end value,interval of x axis) \n",
+    "y = f(x)              #function comes from step 2\n",
+    "#Example\n",
+    "x = np.arange(-5,5,0.01)    #IMPORTANT: SETTING INTERVAL AS 0.01 WILL MAKE THE PLOT AUTO INTERVAL TO MOST PRACTICAL\n",
+    "x = f(x)                    #VALUE"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 4: Display Normal Curve\n",
+    "plt.plot(x axis variable, f(x))      #This is the syntax to display the final graph. Put x variabel and y function\n",
+    "                                     #inside the parenthesis accordingly\n",
+    "                                         \n",
+    "#Example\n",
+    "plt.plot(x, f(x))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#PLOTTING VERTICAL LINES UNDER A NORMAL CURVE"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 1: Importing more libraries\n",
+    "from scipy.stats import norm             #These will import the nessecary functions for the upcoming code\n",
+    "import scipy.stats as ss"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 2: Call plot and lines\n",
+    "plt.plot(x axis variable, norm.pdf(x))                  \n",
+    "plt.vline(x coordinate for vertical line,0,norm.pdf(same x coordinate))\n",
+    "plt.vline(x coordinate for 2nd vertical line,0,norm.pdf(same 2nd x coordinate))\n",
+    "plt.vline(x coordinate for 3rd vertical line,0,norm.pdf(same 3rd x coordinate))\n",
+    "\n",
+    "#Example\n",
+    "plt.plot(x, norm.pdf(x))     #This line calls a normal curve for the function f(x)                     \n",
+    "plt.vline(0,0,norm.pdf(0))   #This line will plot a vertical line under the curve at the \"0\" coordinate on the x axis\n",
+    "plt.vline(1,0,norm.pdf(1))   #This line will plot a 2nd vertical line under the curve at the \"1\" coordinate on the x axis\n",
+    "plt.vline(-1,0,norm.pdf(-1)) #This line will plot a 3rd vertical line under the curve at the \"-1\" coordinate on the x axis"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#PLOTTING NORMAL CURVE MANIPULATIONS: Y AXIS SHIFTS"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 1: Call function to plot normal curve and the manipulated one\n",
+    "plt.plot(x,norm.pdf(x axis variable),x,norm.pdf(x,loc=desired shift value)) #loc= value is almost always the mean\n",
+    "\n",
+    "#Example\n",
+    "plt.plot(x,norm.pdf(x),x,norm.pdf(x,loc=1)) #This line will plot one normal curve, whose x and y parameters are\n",
+    "                                           #established by the first two values in the parentheis, and then a normal\n",
+    "                                           #curve replicating the first one, but shifted to the right one. Change this\n",
+    "                                           #value behind \"loc=\"\" as needed to solve problems"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#PLOTTING NORMAL CURVE MANIPULATIONS: X AXIS SCALING"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 1: Call function to plot normal curve and the manipulated one\n",
+    "plt.plot(x,norm.pdf(x),x,norm.pdf(x axis variable, scale=multiplier we are shrinking/stretching our curve by))\n",
+    "#standard deviation value goes behind scale=\n",
+    "\n",
+    "#Example\n",
+    "plt.plot(x,norm.pdf(x),x,norm.pdf(x, scale=2)) #This line will plot one normal curve, whose x and y parameters are\n",
+    "                                             #established by the first two values in the parenthesis, and then a normal\n",
+    "                                             #curve replicating the first one, but shrunk along the x axis by a \n",
+    "                                             #factor of 2. Change the value behind \"scale=\"as needed to solve problems."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#PLOTTING MULTIPLE NORMAL CURVE PLOTS IN ONE FIGURE"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 1: Call the function to formulate the figure\n",
+    "fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(# of plots going across x axis,# of plots going across y axis)\n",
+    "\n",
+    "#This line will set up a figure with plots \"ax1\" and \"ax2\" in the top row of the figure and plots \"ax3\" and \"ax4\"\n",
+    "#in the bottom row of the figure. This creates a 2 plot by 2 plot square figure. You establish this \"2x2\" size in the\n",
+    "#plt.subplots(x,y) section of the code. We will establish what plots ax1,ax2,ax3, and ax4 in the next step.\n",
+    "    \n",
+    "#Example\n",
+    "fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2,2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 2: Assign plot stipulations to variables\n",
+    "x = np.arange(first x axis value, last x axis value, interval of x axis)\n",
+    "ax1.plot(x, norm.pdf(x, loc=value curve will be centered on(mean), scale=value curve will be scaled by(std)))\n",
+    "#do this for all 4 plots you want to plot, in order you want them to appear left to right, up to down\n",
+    "\n",
+    "#Example\n",
+    "x = np.arange(5,25,0.01)                    #These 2 lines will plot a norm curve with a mean of 15, shrunk down by 3,\n",
+    "ax1.plot(x, norm.pdf(x, loc=15, scale=3)) #on an x axis going by 5s from 5-25. Plot will be @ top left corner of fig \n",
+    "\n",
+    "x = np.arange(-2,12,0.01)                   #These 2 lines will plot a norm curve with a mean of 5, shrunk down by 2,\n",
+    "ax2.plot(x, norm.pdf(x, loc=5, scale=2))  #on an x axis going by 5s from -2-12. Plot will be @ top right corner of fig\n",
+    "\n",
+    "x = np.arange(2,6,0.01)                     #These 2 lines will plot a norm curve with a mean of 4, expanded up by 2,\n",
+    "ax3.plot(x, norm.pdf(x, loc=4, scale=0.5))#on an x axis going by 1s from 2-6. Plot will be @ bottom left corner of fig\n",
+    "\n",
+    "x = np.arange(0,8,0.01)                  #These 2 lines will plot a norm curve with a mean of 4, left as is,\n",
+    "ax4.plot(x, norm.pdf(x, loc=4, scale=1))  #on an x axis going by 2s from 0-8. Plot will be @ bottom right corner of fig"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

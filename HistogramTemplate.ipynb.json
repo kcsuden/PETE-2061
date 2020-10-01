@@ -1,0 +1,168 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 1\n",
+    "data = 'data1A, data1B, data1C, data1D,  data2A, data2B, data2C, data2D, etc'\n",
+    "#Notice the double space between data group one and data group 2\n",
+    "\n",
+    "#Example\n",
+    "data = 'Alabama, 2300, 700, 13%, Montana, 4000, 600, 20%'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 2\n",
+    "data.split()\n",
+    "#this line of codes splits the data into a list of individual items in a designated list named \"data\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 3\n",
+    "data_clean = #copy and paste the list formed from the above lines after the equal sign. This is the new \n",
+    "#variable that holds your data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 4\n",
+    "data_parsed = list(zip(*[iter(data_clean)]*4)) #shapes the data into a readable organized list. Replace the 4 with\n",
+    "data_parsed                                    #you number of feilds. This one has 4 because 1. State 2. Total People\n",
+    "                                               #3. 65 and older 4. percentage. Replace 4 to adjust to problem."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 5\n",
+    "cols = ['field 1','field 2','field 3','field 4']      #this step sets up column names for data frame\n",
+    "#Example\n",
+    "cols = ['State','Total','65 and Older','Percentage']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 6\n",
+    "import pandas as pd         \n",
+    "df = pd.DataFrames(variable where datas stored, columns=variable that holds column info) \n",
+    "#Example\n",
+    "df = pd.DataFrames(data_parsed, columns=cols)            #creates data frame of data_parsed, seperated into desired\n",
+    "                                                         #fields. The data is now clean."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 7\n",
+    "df.replace(',','', regex=True, inplace=True)          #This line will remove all the commas from the dataframe.\n",
+    "df                                                    #If you wanted to remove something else, replace the comma\n",
+    "                                                      #with whatever else you want to remove."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 8\n",
+    "df['desired field'].values.tolist()               #This line of code pulls a desired set of data from the data\n",
+    "                                                  #frame and puts it into a list.\n",
+    "#Example\n",
+    "df['65 and older'].values.tolist()              #The data in the list in this instance is 65 and older"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 9\n",
+    "variableName = [int(i) for i in df['desired field'].values.tolist()]  \n",
+    "#This line assigns list from step 8 into variableName\n",
+    "older     #this line calls the list to be displayed on the screen\n",
+    "\n",
+    "#Example\n",
+    "older = [int(i) for i in df['desired field'].values.tolist()]\n",
+    "older"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 10\n",
+    "bin = np.arange(value your xaxis starts at, value you xaxis ends at, interval you want values to increase by on xaxis)\n",
+    "bin\n",
+    "\n",
+    "#Example\n",
+    "bin = np.arange(0, 4500, 500)\n",
+    "bin\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Step 11\n",
+    "plt.hist(list variable from step 9, bins= variable from step 10)      #This will give you your histogram\n",
+    "\n",
+    "#Example\n",
+    "plt.hist(older, bins= bin)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
